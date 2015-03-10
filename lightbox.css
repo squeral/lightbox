@@ -1,0 +1,72 @@
+.lightbox,
+.lightbox .backdrop {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.lightbox {
+  position: fixed;
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  -webkit-transition: opacity .2s linear;
+  transition: opacity .2s linear;
+}
+.lightbox .backdrop,
+.lightbox .content {
+  position: absolute;
+}
+.lightbox .backdrop {
+  z-index: 1;
+  background: #000;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.lightbox .content {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 1024px;
+  height: 580px;
+  z-index: 2;
+  margin: auto;
+  -webkit-box-shadow: 1px 1px 5px #000;
+  box-shadow: 1px 1px 5px #000;
+}
+.lightbox .body,
+.lightbox iframe {
+  width: 100%;
+  height: 100%;
+}
+.lightbox iframe {
+  border: 0;
+  display: block;
+}
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.lightbox .close {
+  color: #FFF;
+  font-size: 18px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  z-index: 3;
+  background: #000;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  padding: 1px 5px 2px 5px;
+  cursor: pointer;
+  border: 2px #FFF solid;
+  -webkit-box-shadow: 2px 2px 5px #000;
+  box-shadow: 2px 2px 5px #000;
+}
+.lightbox.show {
+  display: block;
+}
+.lightbox.open {
+  opacity: 1;
+}
