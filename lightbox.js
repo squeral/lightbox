@@ -8,6 +8,7 @@ var Lightbox = function(elem) {
 	this.width = 1024;
 	this.height = 580;
 	this.image = null;
+	this.video = null;
 	this.init();
 }
 
@@ -85,6 +86,24 @@ Lightbox.prototype.loadImage = function() {
 	this.body.appendChild(this.image);
 }
 
+Lightbox.prototype.loadVideo = function() {
+	var _this = this;
+	this.setDimensions(this.width, this.height);
+
+	if (!this.video) {
+		this.video = document.createElement('video');
+		this.video.addEventListener('loadedmetadata', function() {
+			var dim = _this.fitToSize(this.videoWidth, this.videoHeight, _this.width, _this.height);
+			_this.setDimensions(dim.width, dim.height);
+		});
+		this.video.src = this.href;
+		this.video.autoplay = true;
+		this.video.controls = true;
+	}
+
+	this.body.appendChild(this.video);
+}
+
 Lightbox.prototype.loadIframe = function() {
 	this.setDimensions(this.width, this.height);
 	this.body.innerHTML = '<iframe src="' +this.href+ '" frameborder="0" allowfullscreen></iframe>';
@@ -94,6 +113,9 @@ Lightbox.prototype.open = function() {
 	switch(this.type) {
 		case 'image':
 			this.loadImage();
+			break;
+		case 'video':
+			this.loadVideo();
 			break;
 		default:
 			this.loadIframe();
